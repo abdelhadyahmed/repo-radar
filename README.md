@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Repo Radar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An Nx monorepo managed with Yarn workspaces.
 
-## Available Scripts
+## Layout
 
-In the project directory, you can run:
+```
+.
+├── apps/
+│   └── repo-radar/        React 19 + Vite app (routes, pages, entry point)
+├── packages/
+│   └── ui/                @repo-radar/ui — shared MUI component library
+├── eslint.config.js       shared flat ESLint config
+├── nx.json                Nx targets, caching, task inputs
+├── tsconfig.base.json     shared compiler options + path aliases
+└── package.json           workspace root
+```
 
-### `npm start`
+`@repo-radar/ui` is consumed directly from TypeScript source — there is no build
+step for the library. Vite compiles it as part of the app, so edits to a
+component hot-reload immediately. The alias is declared in two places that must
+stay in sync: `paths` in `tsconfig.base.json` (for the type checker) and the
+Yarn workspace symlink (for Vite's resolver).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Commands
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Run from the repo root:
 
-### `npm test`
+| Command           | What it does                                  |
+| ----------------- | --------------------------------------------- |
+| `yarn dev`        | start the Vite dev server for the app         |
+| `yarn build`      | production build into `apps/repo-radar/dist`  |
+| `yarn preview`    | serve the production build                    |
+| `yarn typecheck`  | `tsc` across every project                    |
+| `yarn lint`       | ESLint across every project                   |
+| `yarn graph`      | open the Nx project graph                     |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Target a single project with `npx nx <target> <project>`, e.g.
+`npx nx lint @repo-radar/ui`.
 
-### `npm run build`
+## Adding a package
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Create `packages/<name>/` with a `package.json` named `@repo-radar/<name>`,
+   `"private": true`, and `"exports": { ".": "./src/index.ts" }`.
+2. Add a `tsconfig.json` extending `../../tsconfig.base.json`.
+3. Add the alias to `paths` in `tsconfig.base.json`.
+4. Add it to the consuming app's `dependencies` and run `yarn install`.
