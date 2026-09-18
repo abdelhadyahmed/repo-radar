@@ -1,47 +1,75 @@
 # Repo Radar
 
-An Nx monorepo managed with Yarn workspaces.
+Search GitHub for repositories, track the ones you care about, and watch their
+stars, open issues and latest commit on one dashboard.
 
-## Layout
+React 19 + Vite + Redux Toolkit + MUI, in an Nx monorepo on Yarn workspaces.
 
-```
-.
-├── apps/
-│   └── repo-radar/        React 19 + Vite app (routes, pages, entry point)
-├── packages/
-│   └── ui/                @repo-radar/ui — shared MUI component library
-├── eslint.config.js       shared flat ESLint config
-├── nx.json                Nx targets, caching, task inputs
-├── tsconfig.base.json     shared compiler options + path aliases
-└── package.json           workspace root
+## Setup
+
+You need **Node 20.19+ or 22.12+** and **Yarn 1** (`npm i -g yarn`).
+
+```bash
+yarn install
+yarn dev          # http://localhost:5173
 ```
 
-`@repo-radar/ui` is consumed directly from TypeScript source — there is no build
-step for the library. Vite compiles it as part of the app, so edits to a
-component hot-reload immediately. The alias is declared in two places that must
-stay in sync: `paths` in `tsconfig.base.json` (for the type checker) and the
-Yarn workspace symlink (for Vite's resolver).
+No API key or `.env` is needed.
 
-## Commands
+| Command          | What it does                                 |
+| ---------------- | -------------------------------------------- |
+| `yarn dev`       | start the dev server                         |
+| `yarn build`     | production build into `apps/repo-radar/dist` |
+| `yarn preview`   | serve the production build                   |
+| `yarn typecheck` | `tsc` across every project                   |
+| `yarn lint`      | ESLint across every project                  |
 
-Run from the repo root:
+## Architecture
 
-| Command           | What it does                                  |
-| ----------------- | --------------------------------------------- |
-| `yarn dev`        | start the Vite dev server for the app         |
-| `yarn build`      | production build into `apps/repo-radar/dist`  |
-| `yarn preview`    | serve the production build                    |
-| `yarn typecheck`  | `tsc` across every project                    |
-| `yarn lint`       | ESLint across every project                   |
-| `yarn graph`      | open the Nx project graph                     |
+```
+apps/repo-radar/      pages, routes, theme, useDebounce
+packages/types/       shared types — depends on nothing
+packages/store/       Redux state + the GitHub API
+packages/ui/          shared MUI components
+```
 
-Target a single project with `npx nx <target> <project>`, e.g.
-`npx nx lint @repo-radar/ui`.
+Dependencies point one way: `ui` and `store` use `types`, and the app uses all
+three. The packages have no build step — Vite compiles them from TypeScript
+source with the app, so edits hot-reload. Each alias is declared twice and both
+must agree: `paths` in `tsconfig.base.json` for the type checker, and the Yarn
+workspace link for Vite.
 
-## Adding a package
+**Decisions worth knowing:**
 
-1. Create `packages/<name>/` with a `package.json` named `@repo-radar/<name>`,
-   `"private": true`, and `"exports": { ".": "./src/index.ts" }`.
-2. Add a `tsconfig.json` extending `../../tsconfig.base.json`.
-3. Add the alias to `paths` in `tsconfig.base.json`.
-4. Add it to the consuming app's `dependencies` and run `yarn install`.
+- **Requests carry an id.** A response whose id is no longer the current one is
+  discarded, so a slow reply cannot overwrite a newer one. Superseded requests
+  are also aborted.
+- **The debounce is a React hook, not store code.** `useDebounce` lives in the
+  app and the search page dispatches `runSearch` when typing settles. Timers in
+  the store would be module-level state shared by every store instance.
+- **Each tracked repo owns its `status` and `error`.** Refreshing all of them
+  dispatches one thunk per repo, so one failure never blocks the others.
+- **The tracked reducers write to `localStorage` themselves.** This makes them
+  impure — DevTools time-travel will rewrite storage — in exchange for keeping
+  the save next to the change instead of in a store subscription.
+- **Repos are keyed by lowercase `owner/name`,** not GitHub's numeric id, so
+  the same repo cannot be tracked twice under different capitalisation.
+- **One axios interceptor** turns failures into readable messages, so no call
+  site handles errors.
+
+## Assumptions and limitations
+
+- **Unauthenticated GitHub: 60 requests an hour.** A search costs one, a
+  refresh costs two. "Refresh all" over 30 repos exhausts the hour. Adding a
+  token would raise this to 5,000 but is not implemented.
+- **Tracked repos live in `localStorage`.** They are per-browser: no account,
+  no sync across devices, and clearing site data loses them. Unreadable or
+  corrupt storage is treated as empty rather than failing.
+- **Search returns the first 20 results.** There is no pagination.
+- **Nothing refreshes on its own.** Tracked data is whatever was last fetched
+  until you press refresh.
+- **No test suite is set up** — `yarn typecheck` and `yarn lint` are the only
+  automated checks.
+- **Renamed repositories** keep refreshing (GitHub redirects) and the card
+  shows the new name, but the entry keeps its original key. Searching for the
+  new name shows it as untracked, and tracking it again adds a duplicate.
