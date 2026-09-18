@@ -6,7 +6,6 @@ interface SearchFieldProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  /** Shows a spinner while a request is in flight or the debounce is waiting. */
   busy?: boolean;
   autoFocus?: boolean;
 }
@@ -14,7 +13,7 @@ interface SearchFieldProps {
 export function SearchField({
   value,
   onChange,
-  placeholder = 'Search GitHub repositories…',
+  placeholder = 'Search...',
   busy,
   autoFocus,
 }: SearchFieldProps) {

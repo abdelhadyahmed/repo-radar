@@ -14,7 +14,9 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@repo-radar/ui": ["./packages/ui/src/index.ts"]
+      "@repo-radar/ui": ["./packages/ui/src/index.ts"],
+      "@repo-radar/types": ["./packages/types/src/index.ts"],
+      "@repo-radar/store": ["./packages/store/src/index.ts"]
     }
   }
 }

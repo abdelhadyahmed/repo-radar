@@ -1,0 +1,32 @@
+{
+  "name": "@repo-radar/store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Redux Toolkit store: slices, thunks and selectors for search and tracking.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "clean": "rimraf .turbo coverage"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
+    "@repo-radar/types": "*",
+    "axios": "^1.20.0",
+    "react-redux": "^9.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^6.0.3"
+  }
+}

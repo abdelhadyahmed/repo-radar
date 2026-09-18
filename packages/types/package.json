@@ -1,0 +1,17 @@
+{
+  "name": "@repo-radar/types",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared domain model and GitHub API payload types. The bottom of the dependency graph: zero runtime dependencies.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "clean": "rimraf .turbo"
+  }
+}

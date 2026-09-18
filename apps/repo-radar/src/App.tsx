@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router";
-import { AppLayout } from "@repo-radar/ui";
-import SearchPAge from "./pages/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import DashboardPage from "./pages/DashboardPage";
+import { AppLayout } from "./pages/layout/AppLayout";
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route element={<AppLayout />}>
         <Route index element={<DashboardPage />} />
-        <Route path="search" element={<SearchPAge />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
