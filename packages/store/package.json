@@ -17,7 +17,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
     "@repo-radar/types": "*",
-    "axios": "^1.20.0",
+    "@repo-radar/github-repo": "*",
     "react-redux": "^9.3.0"
   },
   "peerDependencies": {

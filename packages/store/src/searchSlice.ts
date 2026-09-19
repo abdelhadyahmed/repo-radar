@@ -4,8 +4,8 @@ import {
     type PayloadAction,
 } from '@reduxjs/toolkit';
 import type { GitHubRepo, SearchSort } from '@repo-radar/types';
-import { searchRepos } from './githubApi';
 import type { RootState } from './store';
+import { searchRepos } from '@repo-radar/github-repo';
 
 export interface SearchState {
     query: string;

@@ -14,10 +14,10 @@ import type {
     RepositoryId,
     RepositoryRef,
 } from '@repo-radar/types';
-import { getSnapshot } from './githubApi';
 import { saveTracked } from './storage';
 import { mapCommit, mapRepo } from './mappers';
 import type { RootState } from './store';
+import { refresh } from '@repo-radar/github-repo';
 
 export interface TrackedRepo {
     id: RepositoryId;
@@ -52,7 +52,7 @@ export const refreshRepo = createAsyncThunk<
     if (!entry) return rejectWithValue('That repository is no longer tracked.');
 
     try {
-        const snapshot = await getSnapshot(entry.ref, signal);
+        const snapshot = await refresh(entry.ref, signal);
         return {
             id,
             repository: mapRepo(snapshot.repository),

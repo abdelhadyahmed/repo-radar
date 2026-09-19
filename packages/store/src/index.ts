@@ -2,7 +2,6 @@ export { createAppStore } from './store';
 export type { AppDispatch, AppStore, RootState } from './store';
 export type { SearchState } from './searchSlice';
 export type { TrackedRepo } from './trackedSlice';
-export { getSnapshot, searchRepos } from './githubApi';
 export { useAppDispatch, useAppSelector } from './hooks';
 export {
     queryChanged,
