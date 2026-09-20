@@ -3,6 +3,8 @@
 Search GitHub for repositories, track the ones you care about, and watch their
 stars, open issues and latest commit on one dashboard.
 
+**Live demo:** <https://repo-radar-siemens-repo-radar.vercel.app>
+
 React 19 + Vite + Redux Toolkit + MUI, in an Nx monorepo on Yarn workspaces.
 
 ## Setup
