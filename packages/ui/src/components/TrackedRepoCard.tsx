@@ -20,7 +20,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { ReactNode } from 'react';
-import { absoluteDate, compactNumber, fullNumber, relativeTime } from '../format';
+import { absoluteDate, compactNumber, fullNumber, relativeTime } from '@repo-radar/format';
 
 export interface TrackedRepoCardProps {
   fullName: string;

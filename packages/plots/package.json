@@ -15,7 +15,8 @@
     },
     "dependencies": {
         "@repo-radar/types": "1.0.0",
-        "@repo-radar/ui": "1.0.0"
+        "@repo-radar/ui": "1.0.0",
+        "@repo-radar/format": "1.0.0"
     },
     "peerDependencies": {
         "recharts": "^3.10.1",

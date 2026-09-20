@@ -1,4 +1,4 @@
-import { CardGrid, compactNumber, EmptyState, Panel, StatTile, TrackedRepoCard } from "@repo-radar/ui";
+import { CardGrid, EmptyState, Panel, StatTile, TrackedRepoCard } from "@repo-radar/ui";
 import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
 
@@ -20,6 +20,7 @@ import RadarIcon from '@mui/icons-material/Inventory2Outlined';
 import StarIcon from '@mui/icons-material/StarBorder';
 import WarningIcon from '@mui/icons-material/WarningAmberOutlined';
 import { lazy, Suspense } from "react";
+import { compactNumber } from "@repo-radar/format";
 
 const RepoBarChart = lazy(() => import("@repo-radar/plots").then((m) => ({ default: m.RepoBarChart })))
 

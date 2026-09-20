@@ -3,7 +3,7 @@ import ForkIcon from '@mui/icons-material/CallSplit';
 import CheckIcon from '@mui/icons-material/Check';
 import StarIcon from '@mui/icons-material/StarBorder';
 import { Avatar, Box, Button, Chip, Link, Stack, Typography } from '@mui/material';
-import { compactNumber } from '../format';
+import { compactNumber } from '@repo-radar/format';
 
 export interface SearchResultRowProps {
   fullName: string;

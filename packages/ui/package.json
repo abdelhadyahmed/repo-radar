@@ -12,6 +12,9 @@
     "typecheck": "tsc -b",
     "lint": "eslint ."
   },
+  "dependencies": {
+    "@repo-radar/format": "1.0.0"
+  },
   "peerDependencies": {
     "@mui/icons-material": "^9.4.0",
     "@mui/material": "^9.4.0",
