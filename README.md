@@ -35,6 +35,7 @@ packages/store/       Redux state
 packages/github-repo/       The GitHub API
 packages/ui/          shared MUI components
 packages/plots/          shared plots
+packages/formate/          shared formate
 ```
 
 Dependencies point one way: `ui` and `store` use `types`, and the app uses all
