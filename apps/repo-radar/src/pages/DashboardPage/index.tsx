@@ -103,7 +103,7 @@ export default function DashboardPage() {
           <StatTile label="Failed" value={summary.failed} icon={<WarningIcon />} />
         )}
       </Box>
-      <Box sx={{ display: 'grid', gap: 2, gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' } }}>
+      <Box>
         <Panel title="Stars per repository">
           <RepoBarChart data={starsData} />
         </Panel>
