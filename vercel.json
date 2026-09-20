@@ -1,5 +1,0 @@
-{
-  "buildCommand": "yarn build",
-  "outputDirectory": "apps/repo-radar/dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
