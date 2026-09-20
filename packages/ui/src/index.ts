@@ -6,5 +6,3 @@ export { absoluteDate, compactNumber, fullNumber, relativeTime } from './format'
 export { CardGrid } from './components/CardGrid';
 export { TrackedRepoCard } from './components/TrackedRepoCard';
 export { StatTile } from './components/StatTile';
-export { RepoBarChart } from './components/RepoBarChart';
-export type { RepoBarChartProps, RepoBarDatum } from './components/RepoBarChart';

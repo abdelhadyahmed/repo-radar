@@ -1,0 +1,1 @@
+export { RepoBarChart } from './graphs/RepoBarChart';

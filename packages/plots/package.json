@@ -1,0 +1,28 @@
+{
+    "name": "@repo-radar/plots",
+    "version": "1.0.0",
+    "description": "All charts that you need.",
+    "private": true,
+    "type": "module",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "typecheck": "tsc -b",
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "@repo-radar/types": "1.0.0"
+    },
+    "peerDependencies": {
+        "recharts": "^3.10.1",
+        "@mui/icons-material": "^9.4.0",
+        "@mui/material": "^9.4.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.7"
+    }
+}

@@ -29,8 +29,10 @@ No API key or `.env` is needed.
 ```
 apps/repo-radar/      pages, routes, theme, useDebounce
 packages/types/       shared types — depends on nothing
-packages/store/       Redux state + the GitHub API
+packages/store/       Redux state
+packages/github-repo/       The GitHub API
 packages/ui/          shared MUI components
+packages/plots/          shared plots
 ```
 
 Dependencies point one way: `ui` and `store` use `types`, and the app uses all

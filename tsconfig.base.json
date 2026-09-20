@@ -5,6 +5,7 @@
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "skipLibCheck": true,
+    "strict": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -16,7 +17,9 @@
     "paths": {
       "@repo-radar/ui": ["./packages/ui/src/index.ts"],
       "@repo-radar/types": ["./packages/types/src/index.ts"],
-      "@repo-radar/store": ["./packages/store/src/index.ts"]
+      "@repo-radar/store": ["./packages/store/src/index.ts"],
+      "@repo-radar/github-repo": ["./packages/github-repo/src/index.ts"],
+      "@repo-radar/plots": ["./packages/plots/src/index.ts"]
     }
   }
 }

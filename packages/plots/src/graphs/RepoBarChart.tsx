@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
-import { compactNumber, fullNumber } from '../format';
+import { compactNumber, fullNumber } from '@repo-radar/ui';
 import { Bar, BarChart, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 export interface RepoBarDatum {

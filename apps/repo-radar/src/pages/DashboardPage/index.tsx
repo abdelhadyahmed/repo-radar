@@ -1,4 +1,4 @@
-import { CardGrid, compactNumber, EmptyState, Panel, RepoBarChart, StatTile, TrackedRepoCard } from "@repo-radar/ui";
+import { CardGrid, compactNumber, EmptyState, Panel, StatTile, TrackedRepoCard } from "@repo-radar/ui";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
 
@@ -19,6 +19,7 @@ import IssueIcon from '@mui/icons-material/AdjustOutlined';
 import RadarIcon from '@mui/icons-material/Inventory2Outlined';
 import StarIcon from '@mui/icons-material/StarBorder';
 import WarningIcon from '@mui/icons-material/WarningAmberOutlined';
+import { RepoBarChart } from "@repo-radar/plots";
 
 export default function DashboardPage() {
   const dispatch = useAppDispatch();
