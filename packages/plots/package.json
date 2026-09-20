@@ -14,14 +14,12 @@
         "lint": "eslint ."
     },
     "dependencies": {
-        "@repo-radar/types": "1.0.0",
-        "@repo-radar/ui": "1.0.0",
         "@repo-radar/format": "1.0.0"
     },
     "peerDependencies": {
-        "recharts": "^3.10.1",
-        "@mui/icons-material": "^9.4.0",
-        "@mui/material": "^9.4.0"
+        "react": "^19.2.8",
+        "@mui/material": "^9.4.0",
+        "recharts": "^3.10.1"
     },
     "devDependencies": {
         "@types/react": "^19.2.18",

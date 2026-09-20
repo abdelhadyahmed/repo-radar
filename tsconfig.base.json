@@ -19,7 +19,8 @@
       "@repo-radar/types": ["./packages/types/src/index.ts"],
       "@repo-radar/store": ["./packages/store/src/index.ts"],
       "@repo-radar/github-repo": ["./packages/github-repo/src/index.ts"],
-      "@repo-radar/plots": ["./packages/plots/src/index.ts"]
+      "@repo-radar/plots": ["./packages/plots/src/index.ts"],
+      "@repo-radar/format": ["./packages/format/src/index.ts"]
     }
   }
 }
