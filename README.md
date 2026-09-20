@@ -60,6 +60,9 @@ workspace link for Vite.
   the same repo cannot be tracked twice under different capitalisation.
 - **One axios interceptor** turns failures into readable messages, so no call
   site handles errors.
+- **Optimize the build chunks and load time using lazy loading** keep the app faster in loading and download the needed chunks only once we need it!
+keeps the app more frindly at the first run of the website.
+
 
 ## Assumptions and limitations
 
@@ -77,5 +80,3 @@ workspace link for Vite.
 - **Renamed repositories** keep refreshing (GitHub redirects) and the card
   shows the new name, but the entry keeps its original key. Searching for the
   new name shows it as untracked, and tracking it again adds a duplicate.
-- **Optimize the build chunks and load time using lazy loafing** keep the app faster in loading and download the needed chunks only once we need it!
-keeps the app more network frindly at the first run of the website.
