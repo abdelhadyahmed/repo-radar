@@ -1,7 +1,9 @@
 import { Routes, Route, Navigate } from "react-router";
-import SearchPage from "./pages/SearchPage";
-import DashboardPage from "./pages/DashboardPage";
 import { AppLayout } from "./pages/layout/AppLayout";
+import { lazy } from "react";
+
+const DashboardPage = lazy(() => import("./pages/DashboardPage"))
+const SearchPage = lazy(() => import("./pages/SearchPage"))
 
 function App() {
 

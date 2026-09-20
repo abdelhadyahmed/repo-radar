@@ -77,3 +77,5 @@ workspace link for Vite.
 - **Renamed repositories** keep refreshing (GitHub redirects) and the card
   shows the new name, but the entry keeps its original key. Searching for the
   new name shows it as untracked, and tracking it again adds a duplicate.
+- **Optimize the build chunks and load time using lazy loafing** keep the app faster in loading and download the needed chunks only once we need it!
+keeps the app more network frindly at the first run of the website.

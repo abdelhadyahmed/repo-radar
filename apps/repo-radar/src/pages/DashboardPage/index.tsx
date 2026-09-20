@@ -1,5 +1,5 @@
 import { CardGrid, compactNumber, EmptyState, Panel, StatTile, TrackedRepoCard } from "@repo-radar/ui";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
 
 import {
@@ -19,7 +19,9 @@ import IssueIcon from '@mui/icons-material/AdjustOutlined';
 import RadarIcon from '@mui/icons-material/Inventory2Outlined';
 import StarIcon from '@mui/icons-material/StarBorder';
 import WarningIcon from '@mui/icons-material/WarningAmberOutlined';
-import { RepoBarChart } from "@repo-radar/plots";
+import { lazy, Suspense } from "react";
+
+const RepoBarChart = lazy(() => import("@repo-radar/plots").then((m) => ({ default: m.RepoBarChart })))
 
 export default function DashboardPage() {
   const dispatch = useAppDispatch();
@@ -105,7 +107,9 @@ export default function DashboardPage() {
       </Box>
       <Box>
         <Panel title="Stars per repository">
-          <RepoBarChart data={starsData} />
+          <Suspense fallback={<Skeleton />}>
+            <RepoBarChart data={starsData} />
+          </Suspense>
         </Panel>
       </Box>
 

@@ -1,6 +1,7 @@
-import { AppBar, Box, Container, Stack, Tab, Tabs, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Container, LinearProgress, Stack, Tab, Tabs, Toolbar, Typography } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link, Outlet, useLocation } from 'react-router';
+import { Suspense } from 'react';
 
 const TABS = [{ path: "/", label: "Dashboard" }, { path: "/search", label: "Search" }]
 export function AppLayout() {
@@ -28,7 +29,9 @@ export function AppLayout() {
                 </Container>
             </AppBar>
             <Container maxWidth="xl" component="main" sx={{ py: 3 }}>
-                <Outlet />
+                <Suspense fallback={<LinearProgress />}>
+                    <Outlet />
+                </Suspense>
             </Container>
         </Box>
     )
